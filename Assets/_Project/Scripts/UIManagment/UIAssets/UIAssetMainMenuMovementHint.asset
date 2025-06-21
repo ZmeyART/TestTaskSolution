@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad8483adc29295a41a4bae3e1e780d29, type: 3}
+  m_Name: UIAssetMainMenuMovementHint
+  m_EditorClassIdentifier: 
+  iconPC: {fileID: 21300000, guid: 75f6029a754f111488dcfdf125c1fd4e, type: 3}
+  iconXbox: {fileID: 21300000, guid: 4bf80f6193cfcd8438fb646da2a0b13e, type: 3}
+  iconSony: {fileID: 21300000, guid: 4bf80f6193cfcd8438fb646da2a0b13e, type: 3}
