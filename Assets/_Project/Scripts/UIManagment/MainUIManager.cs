@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 
 public class MainUIManager : MonoBehaviour
@@ -23,6 +24,8 @@ public class MainUIManager : MonoBehaviour
 
     #region UNITY_METHODS
 
+    private void OnEnable() => SetDefaultButton();
+
     private void Start()
     {
         EventSystem.current.SetSelectedGameObject(defaultButton);
@@ -33,6 +36,14 @@ public class MainUIManager : MonoBehaviour
             { "CreditsMenuWindow", creditsMenuWindow },
             { "SettingsMenuWindow", settingsMenuWindow }
         };
+    }
+
+    private void Update()
+    {
+        if (EventSystem.current.currentSelectedGameObject == null &&
+            (Keyboard.current.anyKey.wasPressedThisFrame ||
+             Gamepad.current != null && Gamepad.current.wasUpdatedThisFrame))
+            EventSystem.current.SetSelectedGameObject(defaultButton);
     }
 
     #endregion
@@ -56,6 +67,8 @@ public class MainUIManager : MonoBehaviour
     }
 
     public void SetDefaultButton() => EventSystem.current.SetSelectedGameObject(defaultButton);
+
+    public void CloseGame() => Application.Quit();
 
     #endregion
 
