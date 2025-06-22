@@ -26,9 +26,8 @@ public class MainUIManager : MonoBehaviour
 
     private void OnEnable() => SetDefaultButton();
 
-    private void Start()
+    private void Awake()
     {
-        EventSystem.current.SetSelectedGameObject(defaultButton);
         allMenus = new Dictionary<string, GameObject>
         {
             { "PlayMenuWindow", playMenuWindow },
@@ -42,8 +41,11 @@ public class MainUIManager : MonoBehaviour
     {
         if (EventSystem.current.currentSelectedGameObject == null &&
             (Keyboard.current.anyKey.wasPressedThisFrame ||
-             Gamepad.current != null && Gamepad.current.wasUpdatedThisFrame))
+             (Gamepad.current != null && Gamepad.current.wasUpdatedThisFrame)))
+        {
+            EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(defaultButton);
+        }
     }
 
     #endregion
@@ -53,7 +55,8 @@ public class MainUIManager : MonoBehaviour
     public void OpenWindow(string windowName)
     {
         foreach (var menu in allMenus.Values)
-            menu.SetActive(false);
+            if(menu.activeInHierarchy)
+                menu.SetActive(false);
         if (previousWindow != windowName)
         {
             allMenus[windowName].SetActive(true);
